@@ -1,5 +1,11 @@
 <template>
   <v-app id="inspire">
+    <div>
+      <base-toaster v-model="showToaster" :type="toasterType">
+        {{ message }}
+      </base-toaster>
+    </div>
+
     <v-app-bar color="blue" height="55">
 
       <v-app-bar-title class="width-full" style="">
@@ -22,11 +28,16 @@
 </template>
 
 <script setup>
+import { storeToRefs } from "pinia";
 import { useAuthStore } from "~/stores/auth";
+import { useToasterStore } from '~/stores/toaster'
 
 const router = useRouter()
 
 const authStore = useAuthStore()
+const toasterStore = useToasterStore()
+
+const { message, showToaster, toasterType } = storeToRefs(toasterStore)
 
 const logout = () => {
   authStore.logout()

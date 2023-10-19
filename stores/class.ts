@@ -2,7 +2,11 @@ import { defineStore } from 'pinia';
 
 import { api } from './../composables/api';
 
+import { useToasterStore } from './toaster';
+
 export const useClassStore = defineStore('class', () => {
+
+    const toasterStore = useToasterStore()
 
     const attendenceClasses = ref<any>([])
     const unRegisteredClasses = ref<any>([])
@@ -71,6 +75,8 @@ export const useClassStore = defineStore('class', () => {
                 }
             })
 
+            toasterStore.showSuccessToaster('Registered Successfuly!')
+
 
         } catch (error) {
             console.log(error);
@@ -92,6 +98,8 @@ export const useClassStore = defineStore('class', () => {
 
             // reget attend class data
             await getAttendenceClass(classId)
+
+            toasterStore.showSuccessToaster('Attended Successfuly!')
 
         } catch (error) {
             console.log(error);

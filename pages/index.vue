@@ -6,7 +6,7 @@
       </v-col>
 
       <v-col v-for="item in attendenceClasses" cols="6" md="2" class="my-2">
-        <class-card :item="item" finished link="attend-classes"></class-card>
+        <class-card :item="item" finished></class-card>
       </v-col>
     </v-row>
     <v-row class="mt-4">
@@ -14,7 +14,7 @@
         <strong class="text-h5 text-dark">Courses</strong>
       </v-col>
       <v-col v-for="item in unRegisteredClasses" cols="6" md="2" class="my-2">
-        <class-card :item="item" link="classes" :loading="loading" @enroll="register(item.id)"></class-card>
+        <class-card :item="item" link="classes" @enroll="register(item.id)"></class-card>
       </v-col>
     </v-row>
   </v-container>
